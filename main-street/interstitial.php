@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Main Street</title>
-	<link rel="canonical" href="layout.php">
+	<link rel="canonical" href="interstitial.php">
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<style amp-boilerplate>
 		body {
@@ -77,9 +77,17 @@
 	<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-	<script async custom-element="amp-sidebar" src="https://testcdn.webstoryz.com/amp-custom/amp-sidebar-custom.js"></script>
 
 	<style amp-custom>
+		@keyframes translate {
+			from {
+				transform: translateX(0);
+			}
+			to {
+				transform: translateX(-100%);
+			}
+		}
+		
 		@font-face {
 			font-family: 'Bebas Neue';
 			src: url('./assets/fonts/BebasNeue-Regular.ttf');
@@ -121,7 +129,6 @@
 		}
 
 		.logo-layer {
-			background-color: white;
 			padding: 5.8vh 20px;
 		}
 
@@ -130,91 +137,43 @@
 		}
 
 		.title-layer {
-			padding: 15.19vh 20px;
+			padding: 24.3vh 20px;
 		}
 
 		.page-title {
 			font-family: 'Bebas Neue';
 			font-weight: 400;
 			text-transform: uppercase;
-			color: black;
-			font-size: 5.5vh;
-			line-height: 1;
-			margin: 0 0 20px;
+			color: white;
+			font-size: 8.4vh;
+			line-height: 1;			
 		}
 
-		.page-subtitle {
-			display: block;
+		.page-title_primary {
+			margin: 0;
+		}
+
+		.page-title-shadow {
+			font-family: 'Bebas Neue';
 			font-weight: 400;
-			font-size: 15px;
-			color: #676968;
-			margin-bottom: 20px;
+			font-size: 17.2vh;
+			line-height: 1;
+			letter-spacing: 0.01em;
+			color: #403D3E;
+		}
+
+		.page-text {
+			font-size: 16px;
+			line-height: 1.375;
+			color: white;			
 		}
 
 		.red {
 			color: #E63E1F;
 		}
 
-		/* .location-image-layer {
-			padding: 39.42vh 0 0;
-		} */
-
-		.location-image-cnt {
-			display: flex;
-			align-items: flex-end;
-			height: 265px;
-			background: url('./assets/location/page1-img.png') no-repeat left center;
-			background-size: contain;
-			font-size: 15px;
-			color: rgba(103, 105, 104, 1);
-			padding: 0 20px 0 50vw;
-		}
-
-		.location-image-cnt span {
-			color: #676968;
-			font-size: 15px;
-		}
-
-		.location-image-cnt span b {
-			font-weight: 600;
-			color: black;
-		}
-
-		.btn {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 27px;
-			position: relative;
-			font-family: 'Bebas Neue';
-			font-weight: 700;
-			font-size: 20px;
-			line-height: 1;
-			color: white;
-			text-transform: uppercase;
-			border: none;
-			height: 73px;
-			width: 100%;
-			text-decoration: none;
-			background-color: #E63E1F;
-			cursor: pointer;
-		}
-
-		.btn:hover,
-		.btn:active,
-		.btn:focus {
-			background-color: #E63E1F !important;
-		}
-
-		.btn_arrowed::after {
-			content: '';
-			width: 46px;
-			height: 18px;
-			background: url('./assets/location/button-arrow.svg') no-repeat center;
-			background-size: contain;
-			position: absolute;
-			right: 58px;
-			top: calc(50% - 9px);
+		.page-1-content {
+			padding-left: 46px;
 		}
 
 		.cta-layer {
@@ -226,63 +185,57 @@
 			align-items: flex-end;
 		}
 
-		.page-2-1-decor {
-			justify-items: flex-end;
-			padding: 68px 0 0;
-		}
-
-		.page-2-2-list {
-			display: flex;
-			flex-direction: column;
-			gap: 18px;
+		.page1-bottom-layer {
+			align-items: flex-end;
+			justify-content: flex-end;
 			padding: 0;
-			margin: 0;
 		}
 
-		.page-2-2-list-item {
-			display: flex;
-			align-items: center;
-			list-style: none;
+		.page1-bottom-img {
+			position: relative;
+			left: -50px;
+			bottom: -10px;
+		}
+
+		.block-title {
 			font-family: 'Bebas Neue';
-			font-size: 24px;
-			text-transform: uppercase;
+			font-weight: 400;
+			font-size: 22px;
+			line-height: 1.18;
 			letter-spacing: 0.01em;
+			color: #E63E1F;
+			margin: 0 0 6px;
 		}
 
-		.page-2-2-list-item amp-img {
-			margin: 0 16px 0 20px;
-		}
-
-		.page-2-2-list-item-time {
-			font-family: 'Rubik';
-			font-size: 18px;
-			text-transform: none;
-		}
-
-		.page-2-2-list-item::before {
-			content: '';
-			width: 5px;
-			height: 5px;
-			border-radius: 50%;
-			background-color: #E63E1F;
-			margin-right: 7px;
-		}
-
-		.page-2-3-list {
-			display: flex;
-			flex-direction: column;
-			gap: 15px;
-			padding: 0;
+		.text {
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 1.57;
+			color: #231F20;
 			margin: 0;
 		}
 
-		.page-2-3-list-item {
+		.page2-content-item {
+			border: 1px solid #A9ACAB;
+			padding: 20px 28px;
+		}
+
+		.page2-content-item:not(:last-of-type) {
+			border-bottom: none;
+		}
+
+		.page3-content-item {
 			display: flex;
 			align-items: center;
-			gap: 10px;
-			font-size: 15px;
-			list-style: none;
-		}		
+			gap: 24px;
+			height: 98px;
+			border: 1px solid #A9ACAB;
+			padding: 0 24px 0 32px;
+		}
+
+		.page3-content-item:not(:last-of-type) {
+			border-bottom: none;
+		}
 
 		.form {
 			display: flex;
@@ -328,6 +281,113 @@
 			letter-spacing: -0.02em;
 			color: #FFFFFF;
 		}
+
+		.page-2-content {
+			display: flex;
+			flex-direction: column;
+			padding-left: 5.625vh;
+		}
+
+		.page-2-gallery {
+			overflow-x: scroll;			
+		}
+
+		.page-2-gallery::-webkit-scrollbar {
+			display: none;
+		}
+
+		.page-2-gallery__content {
+			display: flex;
+			align-items: flex-start;
+			gap: 40px;
+			width: fit-content;
+			padding-left: 5.625vh;
+
+			animation-name: translate;
+			animation-duration: 20s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-fill-mode: both;			
+		}
+
+		.page-2-gallery__content amp-img {
+			flex: none;
+		}
+
+		.attachment-cnt {
+			display: flex;
+			flex-direction: column;
+			gap: 4.7vh;
+			background-color: black;
+			padding: 6.25vh 4vh;
+		}
+
+		.attachment-cnt__title {
+			font-family: 'Bebas Neue';
+			color: #E63E1F;
+			font-size: 3.125vh;
+			margin: 0 0 .5vh;
+		}
+
+		.attachment-cnt__text {			
+			color: white;
+			font-size: 2.34vh;
+			font-weight: 500;
+			line-height: 1.47;
+			margin: 0;
+		}
+
+		.attachment-cnt__block ul {			
+			display: flex;
+			flex-direction: column;
+			gap: 1.5vh;
+			padding: 0;
+			margin: 0;
+		}
+
+		.attachment-cnt__block ul li {			
+			list-style: none;
+			color: white;
+			font-size: 2.34vh;
+			font-weight: 500;
+			line-height: 1.47;
+		}
+
+		@media (min-width: 376px) and (orientation: portrait) {
+			.page1-textblock {
+				font-size: 16px;
+			}
+
+			.page1-bg {
+				padding-top: 24vh;
+			}
+
+			.page1-text-layer {
+				padding: 55vh 0 0;
+			}
+		}
+
+		@media (orientation: landscape) {
+			.page1-textblock {
+				font-size: 18px;
+			}
+
+			.page1-bg {
+				padding-top: 22vh;
+			}
+
+			.page1-text-layer {
+				padding: 61.48vh 0 0;
+			}
+
+			.cta-layer__cnt {
+				padding-bottom: 20px;
+			}
+
+			.text {				
+				font-size: 2vh;				
+			}
+		}
 	</style>
 </head>
 
@@ -337,160 +397,170 @@
 		<?php require_once('sidebar.php'); ?>
 		<?php require_once('sidebar-personal.php'); ?>
 
-		<!-- COVER PAGE -->
-		<amp-story-page id="page-2-1">
+		<!-- PAGE 1 -->
+		<amp-story-page id="page-int-1">						
+			<amp-story-grid-layer template="fill">
+				<amp-img src="./assets/int-1-bg.jpg"
+					width="360"
+					height="640"
+					layout="responsive"
+					alt="">
+				</amp-img>
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="vertical" class="title-layer">
+				<div class="page-1-content">
+					<h1 class="page-title">
+						Апартаменты<br>
+						<span class="red">с отделкой</span>
+					</h1>
+					<p class="page-text">
+						Полностью готовое для жизни<br>
+						пространство бизнес-класса.
+					</p>
+					<amp-img src="./assets/2-vars.png" style="margin: 3.125vh 0 3.75vh;"
+						width="189"
+						height="59"						
+						alt="">
+					</amp-img>
+				</div>	
+				<div style="display: flex; gap: 20px; padding-left: 36px;">
+					<amp-img src="./assets/optima-img.png"
+						width="116"
+						height="210"						
+						alt="">
+					</amp-img>
+					<amp-img src="./assets/business-img.png"
+						width="116"
+						height="210"						
+						alt="">
+					</amp-img>
+				</div>			
+			</amp-story-grid-layer>			
 			<amp-story-grid-layer template="vertical" class="logo-layer" animate-in="fade-in" animate-in-duration="1s">
-				<amp-img class="logo" src="./assets/mainstreet-logo.svg" width="151" height="32" alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="page-2-1-decor" animate-in="fade-in" animate-in-duration="1s">
-				<amp-img src="./assets/location/location-decor.svg" width="59" height="296" alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="title-layer" style="padding-left: 0;" animate-in="fade-in" animate-in-duration="1s">
-				<h1 class="page-title" style="padding-left: 20px;">
-					Комплекс апартаментов<br>
-					<span class="red">на главном проспекте cтолицы</span>
-				</h1>
-				<div class="location-image-cnt">
-					<span>
-						Кутузовский — первый московский проспект <b>концепции «без светофоров»</b>
-					</span>
-				</div>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer" animate-in="fade-in" animate-in-duration="1s">
-				<div class="cta-layer__cnt" grid-area="lower-third">
-					<a class="btn btn_arrowed" role="button" onclick="window.location='location.php#page=page-2-2'">
-						Дальше
-					</a>
-				</div>
-			</amp-story-grid-layer>
-		</amp-story-page>
-
-		<!-- Page 2-2 -->
-		<amp-story-page id="page-2-2">
-			<amp-story-grid-layer template="vertical" class="logo-layer" animate-in="fade-in" animate-in-duration="1s">
-				<amp-img class="logo" src="./assets/mainstreet-logo.svg" width="151" height="32" alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" style="justify-content: flex-start; align-content: flex-start; padding: 0 131px 0 0;" animate-in="fade-in" animate-in-duration="1s">
-				<amp-img class="logo" src="./assets/location/page2-2-decor.svg" width="85" height="64" alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="title-layer" animate-in="fade-in" animate-in-duration="1s">
-				<h1 class="page-title">
-					<span class="red">Доступная</span> Москва
-				</h1>
-				<ul class="page-2-2-list">
-					<li class="page-2-2-list-item">«Москва-сити»
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">12 мин</span>
-					</li>
-					<li class="page-2-2-list-item">ТРЦ «океания»
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">10 мин</span>
-					</li>
-					<li class="page-2-2-list-item">Трц «Времена года»
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">10 мин</span>
-					</li>
-					<li class="page-2-2-list-item">парк победы
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">8 мин</span>
-					</li>
-					<li class="page-2-2-list-item">Филевский парк
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">15 мин</span>
-					</li>
-					<li class="page-2-2-list-item">Кремль
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">17 мин</span>
-					</li>
-					<li class="page-2-2-list-item">Патриаршие пруды
-						<amp-img src="./assets/location/auto-icon.svg" width="23" height="16" alt="">
-						</amp-img>
-						<span class="page-2-2-list-item-time">20 мин</span>
-					</li>
-				</ul>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer" animate-in="fade-in" animate-in-duration="1s">
-				<div class="cta-layer__cnt" grid-area="lower-third">
-					<a class="btn sidebar-control callback-form" role="button">
-						Подберём варианты для вас
-					</a>
-				</div>
-			</amp-story-grid-layer>
-		</amp-story-page>
-
-		<!-- Page 2-3 -->
-		<amp-story-page id="page-2-3">
-			<amp-story-grid-layer template="vertical" class="logo-layer" animate-in="fade-in" animate-in-duration="1s">
-				<amp-img class="logo" src="./assets/mainstreet-logo.svg" width="151" height="32" alt="">
+				<amp-img class="logo" src="./assets/mainstreet-logo_white.svg" width="151" height="32" alt="">
 				</amp-img>
 			</amp-story-grid-layer>			
-			<amp-story-grid-layer template="vertical" style="justify-content: flex-start; align-content: flex-start; padding: 0 131px 0 0;" animate-in="fade-in" animate-in-duration="1s">
-				<amp-img class="logo" src="./assets/location/page2-2-decor.svg" width="85" height="64" alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="title-layer" animate-in="fade-in" animate-in-duration="1s">
-				<div>
-					<h1 class="page-title" style="margin-bottom: 0;">
-						<span class="red">Насыщенная</span> инфраструктура
-					</h1>
-					<span class="page-subtitle">Все что нужно для гармоничной жизни:</span>
-					<ul class="page-2-3-list">
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_1.svg" width="30" height="33" alt="">
-							</amp-img>
-							парки
-						</li>
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_2.svg" width="30" height="27" alt="">
-							</amp-img>
-							детские сады
-						</li>
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_3.svg" width="30" height="30" alt="">
-							</amp-img>
-							школы
-						</li>
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_4.svg" width="30" height="29" alt="">
-							</amp-img>
-							спортивные объекты
-						</li>
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_5.svg" width="30" height="30" alt="">
-							</amp-img>
-							торговые центры
-						</li>
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_6.svg" width="30" height="31" alt="">
-							</amp-img>
-							фитнес-клубы
-						</li>
-						<li class="page-2-3-list-item">
-							<amp-img src="./assets/location/page2-3_7.svg" width="30" height="30" alt="">
-							</amp-img>
-							рестораны
-						</li>
-					</ul>
-				</div>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer" animate-in="fade-in" animate-in-duration="1s">
-				<div class="cta-layer__cnt" grid-area="lower-third">
-					<a class="btn sidebar-control callback-form" role="button">
-						Подробнее о всех преимуществах
-					</a>
-				</div>
-			</amp-story-grid-layer>
 		</amp-story-page>
+
+		<!-- PAGE 2 -->
+		<amp-story-page id="page-int-2">	
+			<amp-story-grid-layer template="fill">
+				<amp-img src="./assets/int-2-bg.png"
+					width="360"
+					height="640"
+					layout="responsive"
+					alt="">
+				</amp-img>
+			</amp-story-grid-layer>								
+			<amp-story-grid-layer template="vertical" style="padding: 12vh 0 0;">
+				<div>
+					<div class="page-2-content">
+						<span class="page-title-shadow">ОПТИМА</span>
+						<h1 class="page-title" style="position: relative; top: -6vh; margin: 0;">
+							Отделка<br>
+							<span class="red">Оптима</span>
+						</h1>
+					</div>	
+					<div class="page-2-gallery">
+						<div class="page-2-gallery__content">
+							<a role="button">
+								<img src="./assets/interstitial/slide-1.jpg"
+									width="192"
+									height="256"						
+									alt="">							
+							</a>
+							<a role="button">
+								<img src="./assets/interstitial/slide-2.jpg"
+									width="192"
+									height="256"						
+									alt="">	
+							</a>
+							<a role="button">
+								<img src="./assets/interstitial/slide-3.jpg"
+									width="192"
+									height="256"						
+									alt="">	
+							</a>
+							<a role="button">
+								<img src="./assets/interstitial/slide-4.jpg"
+									width="192"
+									height="256"						
+									alt="">	
+							</a>
+							<a role="button">
+								<img src="./assets/interstitial/slide-5.jpg"
+									width="300"
+									height="202"						
+									alt="">	
+							</a>																																																											
+						</div>					
+					</div>	
+				</div>						
+			</amp-story-grid-layer>			
+			<amp-story-grid-layer template="vertical" class="logo-layer" animate-in="fade-in" animate-in-duration="1s">
+				<amp-img class="logo" src="./assets/mainstreet-logo_white.svg" width="151" height="32" alt="">
+				</amp-img>
+			</amp-story-grid-layer>	
+			<amp-story-page-attachment layout="nodisplay" data-cta-text="Подробнее">
+				<div class="attachment-cnt">
+					<div class="attachment-cnt__block">
+						<h3 class="attachment-cnt__title">
+							Встроенный свет
+						</h3>
+						<p class="attachment-cnt__text">
+							Светильники-споты белого или черного цвета производства компаний Lightstar, Novotech
+						</p>
+					</div>
+					<div class="attachment-cnt__block">
+						<h3 class="attachment-cnt__title">
+							Межкомнатные двери
+						</h3>
+						<p class="attachment-cnt__text">
+							Высота полотна 2000 – 2100, производство компаний «Дориан», «Волховец» или аналог
+						</p>
+					</div>							
+					<div class="attachment-cnt__block">
+						<h3 class="attachment-cnt__title">
+							Стены (кроме санузла)
+						</h3>
+						<p class="attachment-cnt__text">
+							Краска производства компаний Dulux, Caparol
+						</p>
+					</div>							
+					<div class="attachment-cnt__block">
+						<h3 class="attachment-cnt__title">
+							Напольное покрытие (кроме санузла)
+						</h3>
+						<p class="attachment-cnt__text">
+							Ламинат Kossen, Kronotex или аналог
+						</p>
+					</div>							
+					<div class="attachment-cnt__block">
+						<h3 class="attachment-cnt__title">
+							Напольное покрытие (кроме санузла)
+						</h3>
+						<p class="attachment-cnt__text">
+							Керамогранит производства компаний Kerama Marazzi, Cersanit или аналог
+						</p>
+					</div>							
+					<div class="attachment-cnt__block">
+						<h3 class="attachment-cnt__title">
+							Сантехника и оборудование:
+						</h3>
+						<p class="attachment-cnt__text">
+							<ul>
+								<li>Раковина - AM.PM, Roca</li>
+								<li>Смеситель для раковины, ванны, сифон - Hansgrohe, Grohe, Viega</li>
+								<li>Ванна, унитаз - Roca, Jacob Delafon, Geberit</li>
+								<li>Экран для ванны - керамогранит Kerama Marazzi, Cersanit</li>
+								<li>Полотенцесушитель - Terminus, «Сунержа»</li>							
+							</ul>																																			
+						</p>
+					</div>														
+				</div>
+			</amp-story-page-attachment>		
+		</amp-story-page>
+		
 	</amp-story>
 
 	<style>
@@ -651,44 +721,6 @@
 			comagicSendData(comagicData);
 		};
 		// ############# formPersonal Event #############
-
-		// ############# Phone mask #############
-		window.addEventListener("DOMContentLoaded", function() {
-				[].forEach.call( document.querySelectorAll('.tel'), function(input) {
-				var keyCode;
-				function mask(event) {
-						event.keyCode && (keyCode = event.keyCode);
-						var pos = this.selectionStart;
-						if (pos < 3) event.preventDefault();
-						var matrix = "+7 (___) ___-__-__",
-								i = 0,
-								def = matrix.replace(/\D/g, ""),
-								val = this.value.replace(/\D/g, ""),
-								new_value = matrix.replace(/[_\d]/g, function(a) {
-										return i < val.length ? val.charAt(i++) || def.charAt(i) : a
-								});
-						i = new_value.indexOf("_");
-						if (i != -1) {
-								i < 5 && (i = 3);
-								new_value = new_value.slice(0, i)
-						}
-						var reg = matrix.substr(0, this.value.length).replace(/_+/g,
-								function(a) {
-										return "\\d{1," + a.length + "}"
-								}).replace(/[+()]/g, "\\$&");
-						reg = new RegExp("^" + reg + "$");
-						if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
-						if (event.type == "blur" && this.value.length < 5)  this.value = ""
-				}
-
-				input.addEventListener("input", mask, false);
-				input.addEventListener("focus", mask, false);
-				input.addEventListener("blur", mask, false);
-				input.addEventListener("keydown", mask, false)
-
-			});
-		});
-		// ############# Phone mask #############
 		
 		let playerControlEl, pauseControlEl;
 
@@ -758,6 +790,44 @@
         }
       });
     }
+
+		// ############# Phone mask #############
+		window.addEventListener("DOMContentLoaded", function() {
+				[].forEach.call( document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+				function mask(event) {
+						event.keyCode && (keyCode = event.keyCode);
+						var pos = this.selectionStart;
+						if (pos < 3) event.preventDefault();
+						var matrix = "+7 (___) ___-__-__",
+								i = 0,
+								def = matrix.replace(/\D/g, ""),
+								val = this.value.replace(/\D/g, ""),
+								new_value = matrix.replace(/[_\d]/g, function(a) {
+										return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+								});
+						i = new_value.indexOf("_");
+						if (i != -1) {
+								i < 5 && (i = 3);
+								new_value = new_value.slice(0, i)
+						}
+						var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+								function(a) {
+										return "\\d{1," + a.length + "}"
+								}).replace(/[+()]/g, "\\$&");
+						reg = new RegExp("^" + reg + "$");
+						if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+						if (event.type == "blur" && this.value.length < 5)  this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+		});
+		// ############# Phone mask #############
   </script>
 
 	<script>

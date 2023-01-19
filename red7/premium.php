@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>RED7</title>
-	<link rel="canonical" href="index.html">
+	<link rel="canonical" href="premium.php">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<style amp-boilerplate>
@@ -300,6 +300,51 @@
 				margin-top: 7px;
 			}
 		}
+
+		@media (orientation: landscape) {
+			.page-title {				
+				font-size: 4.5vh;				
+			}
+
+			.page-title_primary {
+				font-size: 8vh;
+			}
+
+			.page-text {
+				font-size: 2vh;				
+			}
+
+			.content-layer {
+				padding: 90px 30px 0;
+			}
+
+			.btn {				
+				height: 8vh;							
+				font-size: 2vh;				
+			}
+
+			.page-2-1-content__item {
+				font-size: 2vh;				
+			}
+
+			.page-2-1-content__block {
+				gap: 30px;	
+			}
+
+			.marked-list li {
+				font-size: 2vh;
+			}
+
+			.marked-list li::before {				
+				margin-top: 1.1vh;
+			}
+
+			.image-block {				
+				left: -30px;
+				width: calc(100% + 60px);		
+				margin-bottom: 3vh;
+			}
+		}
 				
 	</style>
 </head>
@@ -318,10 +363,10 @@
 					layout="responsive"
 					alt="">
 				</amp-img>	
-				<div style="padding: 0 20px;">
+				<div style="padding: 1vh 3vh 0;">
 					<h1 class="page-title" style="margin: 0 0 20px;">
-						<span>Encore</span>
-						<span style="align-self: center; color: #E30613;">Fitness & SPA</span>
+						<span>Премиальный</span>
+						<span style="align-self: center;">фитнес-центр</span>
 						<span style="align-self: flex-end; color: #E30613;">в Вашем доме</span>
 					</h1>
 					<ul class="marked-list">
@@ -355,7 +400,7 @@
 					layout="responsive"
 					alt="">
 				</amp-img>	
-				<div style="padding: 0 20px;">
+				<div style="padding: 1vh 3vh 0;">
 					<h1 class="page-title" style="margin: 0 0 20px;">
 						<span>Круглосуточный</span>						
 						<span style="align-self: flex-end; color: #E30613;">консьерж-сервис</span>
@@ -395,7 +440,7 @@
 					layout="responsive"
 					alt="">
 				</amp-img>	
-				<div style="padding: 0 20px;">
+				<div style="padding: 1vh 3vh 0;">
 					<h1 class="page-title" style="margin: 0 0 20px;">
 						<span>4-х уровневый</span>						
 						<span style="color: #E30613;">паркинг</span>
@@ -480,7 +525,85 @@
     }
   </style>
   <script>
-    let playerControlEl, pauseControlEl;
+    function comagicSendData(comagicData){
+				console.log(comagicData);
+				Comagic.addOfflineRequest({
+						name: comagicData.name,
+						email: comagicData.email,
+						phone: comagicData.tel,
+						form_name: comagicData.formName,
+						message: comagicData.message
+				}, function(o) {
+						let m = JSON.parse(o.response);
+						if(!m.success){
+								console.log('Error send data');
+								console.log(o.response);
+								document.getElementById('send_call_btn').textContent = "Ошибка отправки"
+								return;
+						}
+						document.getElementById('send_call_btn').textContent = "Заявка успешно отправлена"
+				});
+      }
+      
+		// ############# Call form Event #############
+		document.getElementById('callbackForm')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name');
+			let tel = document.getElementById('tel');
+
+			if(tel.value == ''){
+					document.getElementById('tel_label').style.color="#FF0000"
+					return;
+			}
+
+			let comagicData = new Object();
+			comagicData.formName = 'Заказать звонок';
+			comagicData.name = name.value;
+			comagicData.tel = tel.value;
+			comagicSendData(comagicData);
+		};
+		// ############# Call form Event #############		
+
+		// ############# Phone mask #############
+		window.addEventListener("DOMContentLoaded", function() {
+				[].forEach.call( document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+				function mask(event) {
+						event.keyCode && (keyCode = event.keyCode);
+						var pos = this.selectionStart;
+						if (pos < 3) event.preventDefault();
+						var matrix = "+7 (___) ___-__-__",
+								i = 0,
+								def = matrix.replace(/\D/g, ""),
+								val = this.value.replace(/\D/g, ""),
+								new_value = matrix.replace(/[_\d]/g, function(a) {
+										return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+								});
+						i = new_value.indexOf("_");
+						if (i != -1) {
+								i < 5 && (i = 3);
+								new_value = new_value.slice(0, i)
+						}
+						var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+								function(a) {
+										return "\\d{1," + a.length + "}"
+								}).replace(/[+()]/g, "\\$&");
+						reg = new RegExp("^" + reg + "$");
+						if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+						if (event.type == "blur" && this.value.length < 5)  this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+		});
+		// ############# Phone mask #############
+		
+		let playerControlEl, pauseControlEl;
 
     document.addEventListener('DOMContentLoaded', evt => {
       sidebarHandler.call(this, evt);
@@ -543,6 +666,12 @@
       });
     }
   </script>
+
+<script type="text/javascript">
+		var __cs = __cs || [];
+		__cs.push(["setCsAccount", "P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk"]);
+  </script>
+  <script type="text/javascript" async src="https://app.comagic.ru/static/cs.min.js"></script>
 </body>
 
 </html>

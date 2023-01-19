@@ -4,9 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>RED7</title>
-	<link rel="canonical" href="uniq-format.php">
+	<link rel="canonical" href="interstitial.php">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<style amp-boilerplate>
 		body {
 			-webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
@@ -79,9 +80,9 @@
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 	<script async custom-element="amp-sidebar" src="https://testcdn.webstoryz.com/amp-custom/amp-sidebar-custom.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-	<style amp-custom>
+	<style amp-custom>		
 		
 		@font-face {
 			font-family: 'CeraPro';
@@ -121,9 +122,13 @@
 			flex-direction: column;
 			line-height: 1;
 			text-transform: uppercase;
-			font-size: 32px;
+			font-size: 4.25vh;
 			font-weight: 300;
 			color: #000;
+		}
+
+		.page-title_large {		
+			font-size: 6.25vh;			
 		}
 
 		.page-title_primary {
@@ -136,8 +141,13 @@
 
 		.page-text {
 			font-size: 18px;
-			line-height: 1.33;
+			line-height: 1.57;
 			color: #484748;
+		}
+
+		.carousel-item img {
+			box-shadow: 0px 3.39804px 25.4853px -2.54853px rgba(0, 0, 0, 0.1);			
+			object-fit: cover;
 		}
 
 		.slider {
@@ -213,7 +223,10 @@
 			padding: 0 20px 32px;
 		}
 
-		.btn {
+		.btn,
+		.btn:hover,
+		.btn:active,
+		.btn:focus {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -264,7 +277,7 @@
 		.page-1-4-content__text p {
 			display: flex;
 			flex-direction: column;
-			font-size: 14px;
+			font-size: 18px;
 			margin: 0;
 		}
 
@@ -277,137 +290,102 @@
 			width: 50px;
 		}
 
-		.page-2-1-content__block {
-			display: flex;	
-			border-top: 1px solid #ECEEF0;
-			padding: 15px 0;		
-		}
-
-		.page-2-1-content__block:last-child {			
-			border-bottom: 1px solid #ECEEF0;			
-		}
-
-		.page-2-1-content__item {
+		.whatsapp-form {
 			display: flex;
 			flex-direction: column;
-			gap: 8px;
-			width: 50%;
-			font-size: 12px;
-			line-height: 1.33;
-			color: #484748;
+			gap: 12px;
+			margin-bottom: 10px;
 		}
 
-		.page-2-1-content__img {
+		.whatsapp-form__row {
+			display: flex;
+			align-items: center;
+		}
+
+		.whatsapp-form__row-title {
+			width: 40%;
+			font-size: 14px;
+			line-height: 1.2;
+			letter-spacing: -0.02em;
+			color: #231F20;
+		}
+
+		.whatsapp-form__input-block {
+			display: flex;
+			align-items: center;
+			width: 60%;
+			height: 48px;
+			border: 1px solid black;
+		}
+
+		.whatsapp-form__input-block-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			height: 22px;
+			padding-left: 14px;
+		}
+
+		.whatsapp-form__input-block-item input {
+			border: none !important;
+			width: 100%;
+			height: 22px;
+			min-width: none;
+			outline: none !important;
+			appearance: none !important;
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: -0.02em;
+			color: #676968;
+			position: relative;
+			bottom: -2px;
+			padding: 0 !important;
+		}
+
+		.whatsapp-form__input-block-item input:focus,
+		.whatsapp-form__input-block-item input:active {
+			border: none !important;
+			outline: none !important;
+			appearance: none !important;
+		}
+
+		.whatsapp-form__input-block-item:not(:last-child) {
+			border-right: 1px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.whatsapp-form__input-block-item span {
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: -0.02em;
+			color: #231F20;
+		}
+
+		.form-socials {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		.form-socials a {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			width: 50px;
-			height: 50px;
-			border: 1px solid rgba(0, 0, 0, 0.15);
-		}
-
-		.page-2-2-content {
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-			padding: 42px 0;
-			margin-top: 24vh;
-		}
-
-		.marked-list {
-			display: flex;
-			flex-direction: column;
-			gap: 6px;
-			padding: 0;
-			margin: 0;
-		}
-
-		.marked-list li {
-			display: flex;
-			align-items: flex-start;
-			gap: 9px;
-			list-style: none;
-			font-size: 14px;
-			line-height: 1.3;
-			color: #6D6D6D;
-		}
-
-		.marked-list li::before {
-			content: '';
-			width: 5px;
-			height: 5px;
-			background: #E30613;
 			flex: none;
-			margin-top: 7px;
+			width: 40px;
+			height: 40px;
+			border: 1px solid black;
 		}
 
-		.story-2-title {
-			margin: 0 0 42px;
+		.form-socials a amp-img {
+			transform: scale(.7);			
 		}
 
-		.image-block {
-			position: relative;
-			left: -20px;
-			width: calc(100% + 40px);		
-			margin-bottom: 18px;
-		}
-
-		.page-3-3-image {
-			position: relative;			
-		}
-
-		.page-3-3-image__author {
-			position: absolute;
-			bottom: calc(59vw + 20px);
-			left: 0;
-			font-size: 12px;
-			line-height: 1.5;			
-			text-transform: uppercase;
-			color: #000000;
-			z-index: 10;
-		}
-
-		.page-3-3-image__subscription {
-			position: absolute;
-			top: calc(58vw + 20px);		
-			right: 0;
-			width: 60%;
-			z-index: 10;
-		}
-
-		.bottom-gradient {
-			position: relative;
-			bottom: -6px;
-			height: 85px;
-			background: linear-gradient(to top, #000 0%, rgba(0,0,0,0) 100%);
-			opacity: .3;
-			margin-top: auto;
-		}
-
-		.bottom-gradient-layer {
-			padding: 0;
-		}
-
-		.attachment-container {
-			padding: 20px;
-		}
-
-		.attachment-title {
-			font-weight: 300;
-			font-size: 20px;
+		.form-socials-text {
+			font-size: 14px;
+			line-height: 1.57;
 			letter-spacing: -0.02em;
-			text-transform: uppercase;
-			color: #050006;
-		}
-
-		.attachment-block-title {
-			display: flex;
-			align-items: center;
-			gap: 14px;
-			font-weight: 300;
-			font-size: 21px;						
-			letter-spacing: -0.02em;
-			color: #000000;
-			margin: 0 0 9px;
+			color: black;
+			margin-left: 11px;
 		}
 
 		.form {
@@ -441,37 +419,46 @@
 			line-height: 1.33;			
 			letter-spacing: -0.02em;
 			color: #8E9FAC;
+		}		
+
+		.marked-list {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+			font-size: 14px;
+			padding: 0;
+			margin: 0 0 24px;
 		}
 
-		.form-socials {
+		.marked-list li {
 			display: flex;
 			align-items: center;
 			gap: 8px;
+			list-style: none;		
+			color: #484748;	
 		}
 
-		.form-socials a {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			flex: none;
-			width: 40px;
-			height: 40px;
-			border: 1px solid black;
+		.marked-list li::before {
+			content: '';
+			width: 5px;
+			height: 5px;
+			background-color: #E30613;
+			flex: none;			
 		}
 
-		.form-socials a amp-img {
-			transform: scale(.7);			
-		}
-
-		.form-socials-text {
-			font-size: 14px;
-			line-height: 1.57;
+		.list-title {
+			font-weight: 400;
+			font-size: 21px;			
 			letter-spacing: -0.02em;
-			color: black;
-			margin-left: 11px;
+			color: #000000;
+			margin: 0 0 10px;
 		}
 
 		@media (max-width: 375px) {
+			
+			.page-text {
+				font-size: 14px;			
+			}
 			
 			.swiper-slide img {
 				height: 170px;
@@ -492,59 +479,42 @@
 				padding-bottom: 20px;
 			}
 
-			.page-2-1-content__img {				
-				width: 30px;
-				height: 30px;				
+			.page-1-4-content__text p {				
+				font-size: 14px;				
+			}
+		}
+
+		@media (orientation: landscape) {
+			.page-title {				
+				/* font-size: 4.5vh;				 */
 			}
 
-			.page-2-1-content__img amp-img {				
-				scale: .6;
-			}
-
-			.story-2-title {
-				margin: 0 0 16px;
-			}
-
-			.image-block {				
-				height: 170px;
-				overflow-y: hidden;				
-			}
-
-			.page-3-2-image {
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				height: 200px;
-				overflow-y: hidden;
-				margin-top: 20px;
-			}
-
-			.page-3-2-image amp-img {
-				flex: none;
-			}
-
-			.page-3-3-image {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				height: 270px;
-				overflow-y: hidden;
-			}
-
-			.page-3-3-image amp-img {
-				flex: none;
-			}
-
-			.page-3-3-image__author {				
-				bottom: calc(49vw + 20px);				
-			}
-
-			.page-3-3-image__subscription {				
-				top: calc(43vw + 20px);						
+			.page-title_primary {
+				font-size: 8vh;
 			}
 
 			.page-text {
-				font-size: 14px;				
+				font-size: 2vh;				
+			}
+
+			.content-layer {
+				padding: 90px 30px 0;
+			}
+
+			.btn,
+			.btn:hover,
+			.btn:active,
+			.btn:focus {				
+				height: 8vh;							
+				font-size: 2vh;				
+			}
+
+			.page-1-4-content__text p {			
+				font-size: 2vh;				
+			}
+
+			.marked-list {				
+				font-size: 18px;				
 			}
 		}
 				
@@ -552,19 +522,20 @@
 </head>
 
 <body>
-	<amp-story standalone canShowSystemLayerButtons="false" title="Very" publisher="Main Street">
+	<amp-story standalone canShowSystemLayerButtons="false" title="Very" publisher="Main Street">		
 
 		<?php require_once('sidebar.php'); ?>
+		<?php require_once('sidebar-personal.php'); ?>
 
 		<!-- PAGE 1 -->
-		<amp-story-page id="page7-1">			
+		<amp-story-page id="page-int-1">
 			<amp-story-grid-layer template="fill">
-				<amp-img src="./assets/page-7-1-bg.jpg"
-					width="360"
+				<amp-img src="./assets/int-1-img.jpg"
+					width="320"
 					height="640"
 					layout="responsive"
 					alt="">
-				</amp-img>				
+				</amp-img>
 			</amp-story-grid-layer>
 			<amp-story-grid-layer template="vertical" class="logo-layer">
 				<amp-img src="./assets/red7-logo.svg"
@@ -572,57 +543,70 @@
 					height="26"					
 					alt="">
 				</amp-img>
-			</amp-story-grid-layer>		
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="thirds" class="cta-layer">
+				<a role="button" onclick="window.location='#page=page1-2'" class="btn" grid-area="lower-third" style="margin-top: auto;">
+					Дом шедевр
+				</a>
+			</amp-story-grid-layer>
 			<amp-story-grid-layer template="vertical" class="content-layer">
 				<div>
-					<h1 class="page-title" style="font-size: 30px; margin: 0 0 20px;">
-						<span>Апартаменты</span>
-						<span>с собственной</span>
-						<span style="align-self: flex-end;">террасой</span>
-					</h1>						
-					<p class="page-text">В RED7 на&nbsp;Ваш выбор представлено несколько вариантов апартаментов с&nbsp;террасами площадью от&nbsp;43 до 74,5 кв.м.</p>
+					<h1 class="page-title page-title_large" style="margin: 0 0 2vh;">
+						<span>Клубный дом</span>
+						<span style="align-self: flex-end; color: #E30613;">RED7</span>
+					</h1>
+					<p class="page-text">
+						Модный, дерзкий, ошеломляющий,
+						приковывает к&nbsp;себе внимание яркой индивидуальностью, выходит за&nbsp;рамки привычного пространства и&nbsp;времени.
+					</p>						
 				</div>				
-			</amp-story-grid-layer>	
-			<amp-story-grid-layer template="thirds" class="cta-layer">
-				<a role="button" class="btn sidebar-control" grid-area="lower-third" style="margin-top: auto;">
-					Получить подборку с&nbsp;планировками					
-				</a>
-			</amp-story-grid-layer>					
+			</amp-story-grid-layer>
 		</amp-story-page>	
-		
+
 		<!-- PAGE 2 -->
-		<amp-story-page id="page7-2">						
+		<amp-story-page id="page1-2">			
 			<amp-story-grid-layer template="vertical" class="logo-layer">
 				<amp-img src="./assets/red7-logo.svg"
 					width="57"
 					height="26"					
 					alt="">
 				</amp-img>
-			</amp-story-grid-layer>		
-			<amp-story-grid-layer template="vertical" class="content-layer">
+			</amp-story-grid-layer>			
+			<amp-story-grid-layer template="vertical" class="content-layer" style="padding-top: 70px;">
 				<div>
-					<h1 class="page-title" style="font-size: 30px; margin: 0 0 20px;">
-						<span>Двухуровневые</span>						
-						<span style="align-self: flex-end;">апартаменты</span>
-					</h1>						
-					<amp-img src="./assets/page-7-2-image.jpg"
-						width="320"
-						height="402"
-						layout="responsive"
-						alt="">
-					</amp-img>
+					<h1 class="page-title page-title_large" style="margin: 0 0 3vh;">
+						<span>Дом&nbsp;&ndash;&nbsp;<span style="color: #E30613;">шедевр</span></span>						
+					</h1>										
+					<h2 class="list-title">В RED7 сошлось все:</h2>
+					<ul class="marked-list">
+						<li>Расположение в&nbsp;историческом центре</li>
+						<li>МосквыАрхитектурная индивидуальность</li>
+						<li>Премиальные сервисы дома</li>
+					</ul>
+					<div class="carousel" style="height: 350px; position: relative; top: -50px;">
+						<a class="carousel-item" style="width: 319px; height: 209px;">
+							<img width="319" height="209" src="./assets/interstitial-slider/slide-1.jpg">
+						</a>
+						<a class="carousel-item" style="width: 193px; height: 273px;">
+							<img width="193" height="273" src="./assets/interstitial-slider/slide-2.jpg">
+						</a>
+						<a class="carousel-item" style="width: 209px; height: 278px;">
+							<img width="209" height="278" src="./assets/interstitial-slider/slide-3.jpg">
+						</a>						
+					</div>
 				</div>				
-			</amp-story-grid-layer>		
+			</amp-story-grid-layer>
 			<amp-story-grid-layer template="thirds" class="cta-layer">
 				<a role="button" class="btn sidebar-control" grid-area="lower-third" style="margin-top: auto;">
-					Записаться на показ
+					Подберем апартаменты для Вас
 				</a>
-			</amp-story-grid-layer>							
-		</amp-story-page>	
-	</amp-story>	
+			</amp-story-grid-layer>
+		</amp-story-page>				
+	</amp-story>
 
 	<style>
-    #sidebar {
+    #sidebar,
+		#sidebarPersonal {
       height: 100vh !important;
       width: 100vw !important;
       max-width: none !important;
@@ -634,7 +618,8 @@
       transition: all .3s;
     }
 
-    #sidebar.shown {
+    #sidebar.shown,
+		#sidebarPersonal.shown {
       display: flex !important;
       visibility: visible;
       opacity: 1;
@@ -665,7 +650,8 @@
 		}
 
     @media (orientation: landscape) {
-      #sidebar {
+      #sidebar,
+			#sidebarPersonal {
         position: absolute;
         left: 0;
         top: 0;
@@ -717,7 +703,41 @@
 			comagicData.tel = tel.value;
 			comagicSendData(comagicData);
 		};
-		// ############# Call form Event #############		
+		// ############# Call form Event #############
+
+		// ############# formPersonal Event #############
+		document.getElementById('formPersonal')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name_pers');
+			let tel = document.getElementById('tel_pers');
+			let bedrooms_from = document.getElementById('bedrooms_from');
+			let bedrooms_to = document.getElementById('bedrooms_to');
+			let square_from = document.getElementById('square_from');
+			let square_to = document.getElementById('square_to');
+			let cost = document.getElementById('cost');
+
+			if(tel.value == ''){
+					document.getElementById('tel_label_').style.color="#FF0000"
+					return;
+			}
+
+			var obj = new Object();
+					obj.number_of_bedrooms_from  = bedrooms_from.value;
+					obj.number_of_bedrooms_to  = bedrooms_to.value;
+					obj.square_from  = square_from.value;
+					obj.square_to  = square_to.value;
+					obj.cost = cost.value;
+			let jsonString= JSON.stringify(obj);
+
+			let comagicData = new Object();
+					comagicData.name = name.value;
+					comagicData.tel = tel.value;
+					comagicData.formName = 'Форма: Получите индивидуальную подборку';
+					comagicData.message = jsonString;
+			comagicSendData(comagicData);
+		};
+		// ############# formPersonal Event #############
 
 		// ############# Phone mask #############
 		window.addEventListener("DOMContentLoaded", function() {
@@ -785,21 +805,27 @@
     }
 
     function sidebarHandler() {
-      const sidebarEl = document.querySelector('#sidebar');
+      let sidebarEl;
       const controlElems = document.querySelectorAll('.sidebar-control');
-      const closeElem = document.querySelector('.sidebar-close');
+      const closeElems = document.querySelectorAll('.sidebar-close');
+			const form = document.getElementById('formPersonal');
 
-      closeElem.onclick = () => {
-        sidebarEl.classList.remove('shown');
+      closeElems.forEach(elem => elem.onclick = (evt) => {
+        evt.target.closest('.sidebar-el').classList.remove('shown');
         if (!!playerControlEl) {
           playerControlEl.dispatchEvent(new Event('click', {
             bubbles: true
           }));
         }
-      }
+				form.reset();
+      })
 
       controlElems.forEach(elem => elem.onclick = () => {
-        sidebarEl.classList.toggle('shown');
+        elem.classList.contains('callback-form')
+					? sidebarEl = document.querySelector('#sidebar')	
+					: sidebarEl = document.querySelector('#sidebarPersonal')								
+				
+				sidebarEl.classList.toggle('shown');
 
         document.addEventListener('click', (event) => {
           if (event.target.classList.contains('sidebar_holder')) {
@@ -820,6 +846,21 @@
       });
     }
   </script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var elem = document.querySelector('.carousel');
+			var instance = M.Carousel.init(elem, {
+				dist: -300,
+				shift: -10,
+				numVisible: 3,
+			});
+
+			setInterval(() => {
+				instance.next();
+			}, 3000)
+		});
+	</script>
 
 <script type="text/javascript">
 		var __cs = __cs || [];

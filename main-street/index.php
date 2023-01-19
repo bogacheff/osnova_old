@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Main Street</title>
-	<link rel="canonical" href="index.html">
+	<link rel="canonical" href="index.php">
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<style amp-boilerplate>
 		body {
@@ -313,6 +313,75 @@
 			margin-bottom: 25px;
 		}
 
+		.whatsapp-form {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.whatsapp-form__row {
+			display: flex;
+			align-items: center;
+		}
+
+		.whatsapp-form__row-title {
+			width: 40%;
+			font-size: 14px;
+			line-height: 1.2;
+			letter-spacing: -0.02em;
+			color: #231F20;
+		}
+
+		.whatsapp-form__input-block {
+			display: flex;
+			align-items: center;
+			width: 60%;
+			height: 48px;
+			border: 1px solid #A9ACAB;
+		}
+
+		.whatsapp-form__input-block-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			height: 22px;
+			padding-left: 14px;
+		}
+
+		.whatsapp-form__input-block-item input {
+			border: none !important;
+			width: 100%;
+			height: 22px;
+			min-width: none;
+			outline: none !important;
+			appearance: none !important;
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: -0.02em;
+			color: #676968;
+			position: relative;
+			bottom: -2px;
+			padding: 0 !important;
+		}
+
+		.whatsapp-form__input-block-item input:focus,
+		.whatsapp-form__input-block-item input:active {
+			border: none !important;
+			outline: none !important;
+			appearance: none !important;
+		}
+
+		.whatsapp-form__input-block-item:not(:last-child) {
+			border-right: 1px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.whatsapp-form__input-block-item span {
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: -0.02em;
+			color: #231F20;
+		}		
+
 		.form-socials {
 			display: flex;
 			align-items: center;
@@ -355,6 +424,10 @@
 
 			.cta-layer__cnt {
 				padding-bottom: 20px;
+			}
+
+			.text {				
+				font-size: 2vh;				
 			}
 		}
 	</style>
@@ -426,7 +499,7 @@
 			</amp-story-grid-layer>
 			<amp-story-grid-layer template="thirds" class="cta-layer">
 				<div class="cta-layer__cnt" grid-area="lower-third">
-					<a class="btn" role="button" onclick="window.location='form.php'">Получить индивидуальную подборку</a>
+					<a class="btn sidebar-control" role="button">Получить индивидуальную подборку</a>
 				</div>
 			</amp-story-grid-layer>
 		</amp-story-page>
@@ -559,47 +632,81 @@
     }
   </style>
   <script>
-
-      function comagicSendData(comagicData){
-          console.log(comagicData);
-          Comagic.addOfflineRequest({
-              name: comagicData.name,
-              email: comagicData.email,
-              phone: comagicData.tel,
-              form_name: comagicData.formName,
-              message: comagicData.message
-          }, function(o) {
-              let m = JSON.parse(o.response);
-              if(!m.success){
-                  console.log('Error send data');
-                  console.log(o.response);
-                  document.getElementById('send_call_btn').textContent = "Ошибка отправки"
-                  return;
-              }
-              document.getElementById('send_call_btn').textContent = "Заявка успешно отправлена"
-          });
+    function comagicSendData(comagicData){
+				console.log(comagicData);
+				Comagic.addOfflineRequest({
+						name: comagicData.name,
+						email: comagicData.email,
+						phone: comagicData.tel,
+						form_name: comagicData.formName,
+						message: comagicData.message
+				}, function(o) {
+						let m = JSON.parse(o.response);
+						if(!m.success){
+								console.log('Error send data');
+								console.log(o.response);
+								document.getElementById('send_call_btn').textContent = "Ошибка отправки"
+								return;
+						}
+						document.getElementById('send_call_btn').textContent = "Заявка успешно отправлена"
+				});
       }
-      // ############# Call form Event #############
-      document.getElementById('callbackForm')
-          .onsubmit = function(){
-          event.preventDefault();
-          let name = document.getElementById('name');
-          let tel = document.getElementById('tel');
+      
+		// ############# Call form Event #############
+		document.getElementById('callbackForm')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name');
+			let tel = document.getElementById('tel');
 
-          if(tel.value == ''){
-              document.getElementById('tel_label').style.color="#FF0000"
-              return;
-          }
+			if(tel.value == ''){
+					document.getElementById('tel_label').style.color="#FF0000"
+					return;
+			}
 
-          let comagicData = new Object();
-          comagicData.formName = 'Заказать звонок';
-          comagicData.name = name.value;
-          comagicData.tel = tel.value;
-          comagicSendData(comagicData);
-      };
-      // ############# Call form Event #############
+			let comagicData = new Object();
+			comagicData.formName = 'Заказать звонок';
+			comagicData.name = name.value;
+			comagicData.tel = tel.value;
+			comagicSendData(comagicData);
+		};
+		// ############# Call form Event #############
 
-    let playerControlEl, pauseControlEl;
+		// ############# formPersonal Event #############
+		document.getElementById('formPersonal')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name_pers');
+			let tel = document.getElementById('tel_pers');
+			let bedrooms_from = document.getElementById('bedrooms_from');
+			let bedrooms_to = document.getElementById('bedrooms_to');
+			let square_from = document.getElementById('square_from');
+			let square_to = document.getElementById('square_to');
+			let cost = document.getElementById('cost');
+
+			if(tel.value == ''){
+					document.getElementById('tel_label_').style.color="#FF0000"
+					return;
+			}
+
+			var obj = new Object();
+					obj.number_of_bedrooms_from  = bedrooms_from.value;
+					obj.number_of_bedrooms_to  = bedrooms_to.value;
+					obj.square_from  = square_from.value;
+					obj.square_to  = square_to.value;
+					obj.cost = cost.value;
+			let jsonString= JSON.stringify(obj);
+
+			let comagicData = new Object();
+					comagicData.name = name.value;
+					comagicData.tel = tel.value;
+					comagicData.formName = 'Форма: Получите индивидуальную подборку';
+					comagicData.message = jsonString;
+			comagicSendData(comagicData);
+		};
+		// ############# formPersonal Event #############
+		
+		let playerControlEl, pauseControlEl, shareControlEl;
 
     document.addEventListener('DOMContentLoaded', evt => {
       sidebarHandler.call(this, evt);
@@ -616,6 +723,9 @@
             pauseControlEl = mutation.previousSibling.shadowRoot
               .querySelector('aside')
               .querySelector('.i-amphtml-story-pause-control');
+						shareControlEl = mutation.previousSibling.shadowRoot
+              .querySelector('aside')
+              .querySelector('.i-amphtml-story-share-control');
             observer.disconnect();
           }
         }
@@ -667,9 +777,47 @@
         }
       });
     }
+
+		// ############# Phone mask #############
+		window.addEventListener("DOMContentLoaded", function() {
+				[].forEach.call( document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+				function mask(event) {
+						event.keyCode && (keyCode = event.keyCode);
+						var pos = this.selectionStart;
+						if (pos < 3) event.preventDefault();
+						var matrix = "+7 (___) ___-__-__",
+								i = 0,
+								def = matrix.replace(/\D/g, ""),
+								val = this.value.replace(/\D/g, ""),
+								new_value = matrix.replace(/[_\d]/g, function(a) {
+										return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+								});
+						i = new_value.indexOf("_");
+						if (i != -1) {
+								i < 5 && (i = 3);
+								new_value = new_value.slice(0, i)
+						}
+						var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+								function(a) {
+										return "\\d{1," + a.length + "}"
+								}).replace(/[+()]/g, "\\$&");
+						reg = new RegExp("^" + reg + "$");
+						if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+						if (event.type == "blur" && this.value.length < 5)  this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+		});
+		// ############# Phone mask #############
   </script>
 
-	<script>
+	<!-- <script>
 		const controlButtons = document.querySelectorAll('.slider__control');
 		let timer = setInterval(nextSlide, 3000);
 
@@ -700,11 +848,12 @@
 				}, 0)		
 			})
 		})
-	</script>
-    <script type="text/javascript">
-        var __cs = __cs || [];
-        __cs.push(["setCsAccount", "P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk"]);
-    </script>
-    <script type="text/javascript" async src="https://app.comagic.ru/static/cs.min.js"></script>
+	</script> -->
+	<script type="text/javascript">
+		var __cs = __cs || [];
+		__cs.push(["setCsAccount", "P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk"]);
+  </script>
+  <script type="text/javascript" async src="https://app.comagic.ru/static/cs.min.js"></script>
 </body>
+
 </html>

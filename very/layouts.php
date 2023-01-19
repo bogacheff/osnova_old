@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Main Street</title>
-	<link rel="canonical" href="layout.html">
+	<link rel="canonical" href="layouts.php">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -582,6 +582,10 @@
 			.layout-content-layer_short .layout-content-layer__cnt {
 				height: 30vh;
 			}
+
+			.page-text {			
+				font-size: 2vh;				
+			}	
 		}
 	</style>
 </head>
@@ -997,7 +1001,7 @@
 					<h1 class="page-title">
 						Доступно еще<br>15 видов планировок.						
 					</h1>
-					<span class="page-text" style="font-size: 15px; line-height: 1.47; margin-bottom: 9.4vh;">
+					<span class="page-text" style="margin-bottom: 9.4vh;">
 						Получите индивидуальную подборку по&nbsp;вашим параметрам и&nbsp;ознакомьтесь со&nbsp;всеми вариантами планировок.
 					</span>
 					<div class="carousel" style="height: 200px;">
@@ -1128,7 +1132,119 @@
     }
   </style>
   <script>
-    let playerControlEl, pauseControlEl;
+    function comagicSendData(comagicData){
+				console.log(comagicData);
+				Comagic.addOfflineRequest({
+						name: comagicData.name,
+						email: comagicData.email,
+						phone: comagicData.tel,
+						form_name: comagicData.formName,
+						message: comagicData.message
+				}, function(o) {
+						let m = JSON.parse(o.response);
+						if(!m.success){
+								console.log('Error send data');
+								console.log(o.response);
+								document.getElementById('send_call_btn').textContent = "Ошибка отправки"
+								return;
+						}
+						document.getElementById('send_call_btn').textContent = "Заявка успешно отправлена"
+				});
+      }
+      
+		// ############# Call form Event #############
+		document.getElementById('callbackForm')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name');
+			let tel = document.getElementById('tel');
+
+			if(tel.value == ''){
+					document.getElementById('tel_label').style.color="#FF0000"
+					return;
+			}
+
+			let comagicData = new Object();
+			comagicData.formName = 'Заказать звонок';
+			comagicData.name = name.value;
+			comagicData.tel = tel.value;
+			comagicSendData(comagicData);
+		};
+		// ############# Call form Event #############
+
+		// ############# formPersonal Event #############
+		document.getElementById('formPersonal')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name_pers');
+			let tel = document.getElementById('tel_pers');
+			let bedrooms_from = document.getElementById('bedrooms_from');
+			let bedrooms_to = document.getElementById('bedrooms_to');
+			let square_from = document.getElementById('square_from');
+			let square_to = document.getElementById('square_to');
+			let cost = document.getElementById('cost');
+
+			if(tel.value == ''){
+					document.getElementById('tel_label_').style.color="#FF0000"
+					return;
+			}
+
+			var obj = new Object();
+					obj.number_of_bedrooms_from  = bedrooms_from.value;
+					obj.number_of_bedrooms_to  = bedrooms_to.value;
+					obj.square_from  = square_from.value;
+					obj.square_to  = square_to.value;
+					obj.cost = cost.value;
+			let jsonString= JSON.stringify(obj);
+
+			let comagicData = new Object();
+					comagicData.name = name.value;
+					comagicData.tel = tel.value;
+					comagicData.formName = 'Форма: Получите индивидуальную подборку';
+					comagicData.message = jsonString;
+			comagicSendData(comagicData);
+		};
+		// ############# formPersonal Event #############
+
+		// ############# Phone mask #############
+		window.addEventListener("DOMContentLoaded", function() {
+				[].forEach.call( document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+				function mask(event) {
+						event.keyCode && (keyCode = event.keyCode);
+						var pos = this.selectionStart;
+						if (pos < 3) event.preventDefault();
+						var matrix = "+7 (___) ___-__-__",
+								i = 0,
+								def = matrix.replace(/\D/g, ""),
+								val = this.value.replace(/\D/g, ""),
+								new_value = matrix.replace(/[_\d]/g, function(a) {
+										return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+								});
+						i = new_value.indexOf("_");
+						if (i != -1) {
+								i < 5 && (i = 3);
+								new_value = new_value.slice(0, i)
+						}
+						var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+								function(a) {
+										return "\\d{1," + a.length + "}"
+								}).replace(/[+()]/g, "\\$&");
+						reg = new RegExp("^" + reg + "$");
+						if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+						if (event.type == "blur" && this.value.length < 5)  this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+		});
+		// ############# Phone mask #############
+		
+		let playerControlEl, pauseControlEl;
 
     document.addEventListener('DOMContentLoaded', evt => {
       sidebarHandler.call(this, evt);
@@ -1210,6 +1326,12 @@
 	</script>
 
 	<!-- <script src="https://testcdn.webstoryz.com/amp-custom/sidebar-handler.js"></script> -->
+
+	<script type="text/javascript">
+		var __cs = __cs || [];
+		__cs.push(["setCsAccount", "P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk"]);
+  </script>
+  <script type="text/javascript" async src="https://app.comagic.ru/static/cs.min.js"></script>
 </body>
 
 </html>

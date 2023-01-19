@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>RED7</title>
-	<link rel="canonical" href="index.html">
+	<link rel="canonical" href="sight.php">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<style amp-boilerplate>
@@ -462,6 +462,51 @@
 				top: calc(43vw + 20px);						
 			}
 		}
+
+		@media (orientation: landscape) {
+			.page-title {				
+				font-size: 4.5vh;				
+			}
+
+			.page-title_primary {
+				font-size: 8vh;
+			}
+
+			.page-text {
+				font-size: 2vh;				
+			}
+
+			.content-layer {
+				padding: 90px 30px 0;
+			}
+
+			.btn {				
+				height: 8vh;							
+				font-size: 2vh;				
+			}
+
+			.page-2-1-content__item {
+				font-size: 2vh;				
+			}
+
+			.page-2-1-content__block {
+				gap: 30px;	
+			}
+
+			.marked-list li {
+				font-size: 2vh;
+			}
+
+			.marked-list li::before {				
+				margin-top: 1.1vh;
+			}
+
+			.image-block {				
+				left: -30px;
+				width: calc(100% + 60px);		
+				margin-bottom: 3vh;
+			}
+		}
 				
 	</style>
 </head>
@@ -531,7 +576,7 @@
 			</amp-story-grid-layer>
 			<amp-story-grid-layer template="vertical" class="content-layer">
 				<div>
-					<h1 class="page-title" style="font-size: 28px; margin: 0;">
+					<h1 class="page-title" style="margin: 0;">
 						<span>Передовое</span>
 						<span style="align-self: center;">нидерландское</span>
 						<span style="align-self: flex-end;">архитектурное бюро</span>
@@ -666,8 +711,8 @@
 			}			
     }
   </style>
-  <script>
-    let playerControlEl, pauseControlEl;
+  <script>    		
+		let playerControlEl, pauseControlEl;
 
     document.addEventListener('DOMContentLoaded', evt => {
       sidebarHandler.call(this, evt);
@@ -730,6 +775,12 @@
       });
     }
   </script>
+
+<script type="text/javascript">
+		var __cs = __cs || [];
+		__cs.push(["setCsAccount", "P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk"]);
+  </script>
+  <script type="text/javascript" async src="https://app.comagic.ru/static/cs.min.js"></script>
 </body>
 
 </html>

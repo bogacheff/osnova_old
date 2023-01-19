@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>RED7</title>
-	<link rel="canonical" href="layout.html">
+	<link rel="canonical" href="layouts.php">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -299,13 +299,12 @@
 		}
 
 		.layout-params-list li {
-			display: flex;
-			align-items: center;
+			display: flex;			
 			gap: 6px;
 			font-size: 13px;
 			line-height: 1.3;			
 			letter-spacing: -0.02em;
-			color: #484748;
+			color: #484748;			
 		}
 
 		.layout-params-list li::before {
@@ -321,6 +320,7 @@
 			font-size: 13px;			
 			letter-spacing: -0.02em;
 			color: #E30613;
+			margin-top: .1vh;
 		}
 
 		.price-block {
@@ -627,6 +627,69 @@
 				font-size: 14px;				
 			}	
 		}
+
+		@media (orientation: landscape) {
+			.page-title {				
+				font-size: 4.5vh;				
+			}
+
+			.page-title_primary {
+				font-size: 8vh;
+			}
+
+			.page-text {
+				font-size: 2vh;				
+			}
+
+			.content-layer {
+				padding: 90px 30px 0;
+			}
+
+			.btn {				
+				height: 8vh;							
+				font-size: 2vh;				
+			}
+
+			.btn_secondary {								
+				font-size: 1.5vh;				
+			}
+
+			.page-2-1-content__item {
+				font-size: 2vh;				
+			}
+
+			.page-2-1-content__block {
+				gap: 30px;	
+			}
+
+			.marked-list li {
+				font-size: 2vh;
+			}
+
+			.marked-list li::before {				
+				margin-top: 1.1vh;
+			}
+
+			.block-title {
+				font-size: 3vh;
+			}
+
+			.price-block {
+				font-size: 2.5vh;
+			}
+
+			.layout-params-list li {				
+				font-size: 2vh;		
+			}
+
+			.layout-content-layer__cnt {				
+				padding: 36px 24px 0;
+			}
+
+			.layout-params-list {
+				gap: 2vh;
+			}
+		}
 				
 	</style>
 </head>
@@ -646,9 +709,9 @@
 			</amp-story-grid-layer>
 			<amp-story-grid-layer template="vertical" class="layout-content-layer">
 				<div class="layout-content-layer__cnt">
-					<h1 class="block-title" style="margin: 0 0 16px;">Студия, 54.17 м²</h1>
+					<h1 class="block-title" style="margin: 0 0 3vh;">Студия, 54.17 м²</h1>
 					<ul class="layout-params-list">
-						<li class="page-text">Холл — 3.91 м<sup>2</sup></li>
+						<li class="page-text">Холл — 3.91 м²</li>
 						<li class="page-text">Кухня-гостиная&nbsp;— 29.28&nbsp;м²</li>
 						<li class="page-text">Ванная - 4.26 м²</li>
 						<li class="page-text">Балкон - 8.36 м²</li>
@@ -694,7 +757,7 @@
 			</amp-story-grid-layer>
 			<amp-story-grid-layer template="vertical" class="layout-content-layer">
 				<div class="layout-content-layer__cnt">
-					<h1 class="block-title" style="margin: 0 0 16px;">
+					<h1 class="block-title" style="margin: 0 0 3vh;">
 						Двухуровневая<br>студия 44.72 м²
 					</h1>
 					<ul class="layout-params-list">
@@ -743,7 +806,7 @@
 			</amp-story-grid-layer>
 			<amp-story-grid-layer template="vertical" class="layout-content-layer">
 				<div class="layout-content-layer__cnt">
-					<h1 class="block-title" style="margin: 0 0 16px;">
+					<h1 class="block-title" style="margin: 0 0 3vh;">
 						Евро-3 68.61 м²
 					</h1>
 					<ul class="layout-params-list">
@@ -795,7 +858,7 @@
 			</amp-story-grid-layer>		
 			<amp-story-grid-layer template="vertical" class="content-layer">
 				<div>
-					<h1 class="page-title" style="font-size: 28px; margin: 0 0 36px;">
+					<h1 class="page-title" style="margin: 0 0 6vh;">
 						<span>Доступно</span>
 						<span>несколько видов</span>
 						<span style="align-self: flex-end;">планировок</span>
@@ -918,7 +981,99 @@
     }
   </style>
   <script>
-    let playerControlEl, pauseControlEl;
+    function comagicSendData(comagicData){
+			console.log(comagicData);
+			Comagic.addOfflineRequest({
+					name: comagicData.name,
+					email: comagicData.email,
+					phone: comagicData.tel,
+					form_name: comagicData.formName,
+					message: comagicData.message
+			}, function(o) {
+					let m = JSON.parse(o.response);
+					if(!m.success){
+							console.log('Error send data');
+							console.log(o.response);
+							document.getElementById('send_call_btn').textContent = "Ошибка отправки"
+							return;
+					}
+					document.getElementById('send_call_btn').textContent = "Заявка успешно отправлена"
+			});
+    }      		
+
+		// ############# formPersonal Event #############
+		document.getElementById('formPersonal')
+			.onsubmit = function(){
+			event.preventDefault();
+			let name = document.getElementById('name_pers');
+			let tel = document.getElementById('tel_pers');
+			let bedrooms_from = document.getElementById('bedrooms_from');
+			let bedrooms_to = document.getElementById('bedrooms_to');
+			let square_from = document.getElementById('square_from');
+			let square_to = document.getElementById('square_to');
+			let cost = document.getElementById('cost');
+
+			if(tel.value == ''){
+					document.getElementById('tel_label_').style.color="#FF0000"
+					return;
+			}
+
+			var obj = new Object();
+					obj.number_of_bedrooms_from  = bedrooms_from.value;
+					obj.number_of_bedrooms_to  = bedrooms_to.value;
+					obj.square_from  = square_from.value;
+					obj.square_to  = square_to.value;
+					obj.cost = cost.value;
+			let jsonString= JSON.stringify(obj);
+
+			let comagicData = new Object();
+					comagicData.name = name.value;
+					comagicData.tel = tel.value;
+					comagicData.formName = 'Форма: Получите индивидуальную подборку';
+					comagicData.message = jsonString;
+			comagicSendData(comagicData);
+		};
+		// ############# formPersonal Event #############
+
+		// ############# Phone mask #############
+		window.addEventListener("DOMContentLoaded", function() {
+				[].forEach.call( document.querySelectorAll('.tel'), function(input) {
+				var keyCode;
+				function mask(event) {
+						event.keyCode && (keyCode = event.keyCode);
+						var pos = this.selectionStart;
+						if (pos < 3) event.preventDefault();
+						var matrix = "+7 (___) ___-__-__",
+								i = 0,
+								def = matrix.replace(/\D/g, ""),
+								val = this.value.replace(/\D/g, ""),
+								new_value = matrix.replace(/[_\d]/g, function(a) {
+										return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+								});
+						i = new_value.indexOf("_");
+						if (i != -1) {
+								i < 5 && (i = 3);
+								new_value = new_value.slice(0, i)
+						}
+						var reg = matrix.substr(0, this.value.length).replace(/_+/g,
+								function(a) {
+										return "\\d{1," + a.length + "}"
+								}).replace(/[+()]/g, "\\$&");
+						reg = new RegExp("^" + reg + "$");
+						if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+						if (event.type == "blur" && this.value.length < 5)  this.value = ""
+				}
+
+				input.addEventListener("input", mask, false);
+				input.addEventListener("focus", mask, false);
+				input.addEventListener("blur", mask, false);
+				input.addEventListener("keydown", mask, false)
+
+			});
+		});
+		// ############# Phone mask #############
+		
+		let playerControlEl, pauseControlEl;
 
     document.addEventListener('DOMContentLoaded', evt => {
       sidebarHandler.call(this, evt);
@@ -996,6 +1151,12 @@
 	</script>
 
 	<!-- <script src="https://testcdn.webstoryz.com/amp-custom/sidebar-handler.js"></script> -->
+
+	<script type="text/javascript">
+		var __cs = __cs || [];
+		__cs.push(["setCsAccount", "P9MGH_SwFkyiulNp2y0zlvS_NsTzwYlk"]);
+  </script>
+  <script type="text/javascript" async src="https://app.comagic.ru/static/cs.min.js"></script>
 </body>
 
 </html>

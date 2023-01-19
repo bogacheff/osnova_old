@@ -19,17 +19,17 @@
 				Получите<br>
 				индивидуальную подборку
 			</h1>
-			<div class="whatsapp-form">
+			<form class="whatsapp-form" id="formPersonal">
 				<div class="whatsapp-form__row">
 					<span class="whatsapp-form__row-title">Количество спален</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>от</span>
-							<input type="text" placeholder="1">
+							<input type="text" placeholder="1" id="bedrooms_from">
 						</div>
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input type="text" placeholder="5">
+							<input type="text" placeholder="5" id="bedrooms_to">
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input type="text" placeholder="70 078 296 ₽">
+							<input type="text" placeholder="70 078 296 ₽" id="cost">
 						</div>
 					</div>
 				</div>
@@ -47,11 +47,11 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>от</span>
-							<input type="text" placeholder="30">
+							<input type="text" placeholder="30" id="square_from">
 						</div>
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input type="text" placeholder="180">
+							<input type="text" placeholder="180" id="square_to">
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 					<span class="whatsapp-form__row-title">Имя</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
-							<input type="text" placeholder="Ваше имя">
+							<input type="text" placeholder="Ваше имя" id="name_pers">
 						</div>
 					</div>
 				</div>
@@ -67,12 +67,12 @@
 					<span class="whatsapp-form__row-title">Телефон</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
-							<input type="text" placeholder="+7 900 123 45 67">
+							<input class="tel" type="tel" id="tel_pers">
 						</div>
 					</div>
 				</div>
-				<button class="whatsapp-form__submit-btn btn btn_small-font">Получить подборку</button>
-			</div>
+				<button id="send_call_btn" type="submit" class="whatsapp-form__submit-btn btn btn_small-font">Получить подборку</button>
+			</form>
 			<div class="form-socials">
 				<a role="button" onclick="window.location='https://t.me/OsnovaChatPlatformBot'">
 					<amp-img src="./assets/telegram-icon.svg" width="40" height="40" alt="">

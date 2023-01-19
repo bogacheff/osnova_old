@@ -55,7 +55,7 @@
 					<span class="whatsapp-form__row-title">Имя</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
-							<input id="name_pers" name="name" type="text" placeholder="Ваше имя">
+							<input id="name_pers" name="name" type="text" placeholder="Ваше имя" required>
 						</div>
 					</div>
 				</div>
@@ -63,11 +63,11 @@
 					<span id="tel_label_" class="whatsapp-form__row-title">Телефон</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
-							<input id="tel_pers" name="tel" type="text" placeholder="+7 900 123 45 67">
+							<input class="tel" id="tel_pers" name="tel" type="text" required>
 						</div>
 					</div>
 				</div>
-				<button id="construct_btn_send" type="submit" class="btn" style="text-transform: none; margin: 6px 0 16px;">Получить подборку</button>
+				<button id="send_call_btn" type="submit" class="btn" style="text-transform: none; margin: 6px 0 16px;">Получить подборку</button>
 			</form>
 			<div class="form-socials">
 				<a role="button" onclick="window.location='https://t.me/OsnovaChatPlatformBot'">

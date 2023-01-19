@@ -24,11 +24,11 @@
 			<form id="callbackForm" class="form" action="">
 				<div class="input-block" style="padding-right: 40px;">
 					<label class="input-label" for="name">Ваше имя</label>
-					<input class="input" id="name" name="name" type="text">
+					<input class="input" id="name" name="name" type="text" required>
 				</div>
 				<div class="input-block" style="padding-right: 40px;">
 					<label id="tel_label" class="input-label" for="phone">Ваш номер телефона</label>
-					<input class="input" id="tel" name="phone" type="text">
+					<input class="input tel" id="tel" name="phone" type="text" required>
 				</div>
 				<button id="send_call_btn" class="btn btn_submit" style="margin-top: 4.7vh;">
 					Отправить

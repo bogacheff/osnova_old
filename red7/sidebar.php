@@ -20,11 +20,11 @@
 			<form id="callbackForm" class="form" action="">
 				<div class="input-block">
 					<label class="input-label" for="name">Ваше имя</label>
-					<input id="name" class="input" name="name" type="text">
+					<input id="name" class="input" name="name" type="text" required>
 				</div>
 				<div class="input-block">
 					<label id="tel_label" class="input-label" for="phone">Ваш номер телефона</label>
-					<input id="tel" class="input" name="phone" type="text">
+					<input id="tel" class="input tel" name="phone" type="text" required>
 				</div>
 				<button id="send_call_btn" class="btn btn_submit" type="submit">
 					Отправить

@@ -358,7 +358,7 @@
 						</div>
 						<div class="input-block">
 							<label class="input-label" for="phone">Ваш номер телефона</label>
-							<input class="input" name="phone" type="text">
+							<input class="input" type="tel" name="phone" type="text" pattern="\+?[\d\s\-\(\)]+[^\s\s][^\-\s]$" minlength="11" maxlength="18" required />
 						</div>
 						<button class="btn btn_submit">
 							Отправить

@@ -4,8 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Very</title>
-	<link rel="canonical" href="own-garden.php">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+	<link rel="canonical" href="interstitial.php">	
 	<meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 	<style amp-boilerplate>
 		body {
@@ -77,11 +76,37 @@
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
 	<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
 	<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-	<script async custom-element="amp-sidebar" src="https://testcdn.webstoryz.com/amp-custom/amp-sidebar-custom.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>		
 
-	<style amp-custom>		
+	<style amp-custom>	
+	
+		@keyframes falling {
+			0% {
+				opacity: 0;
+				transform: translateY(0);
+			}
+			25% {
+				opacity: 1;
+				transform: translateY(100%);
+			}
+			80% {				
+				opacity: 1;
+				transform: translateY(300%);
+			}
+			100% {				
+				transform: translateY(330%);
+				opacity: 0;
+			}
+		}
+
+		@keyframes rocking {
+			0% {
+				transform: translateX(-50%) rotate(35deg);
+			}
+			100% {
+				transform: translateX(50%) rotate(-35deg);
+			}
+		}
 		
 		@font-face {
 			font-family: 'Open Sans';
@@ -125,93 +150,36 @@
 		}
 
 		.page-title {
+			display: flex;
+			align-items: center;
+			gap: 3.33vw;
 			font-family: 'Oranienbaum';
 			font-weight: 400;
-			font-size: 40px;
+			font-size: 6.25vh;
 			line-height: 1;
-			color: #3F4440;
-			margin: 0 0 1.875vh
+			color: #205640;
+			text-align: center;
+			margin: 0 0 2.5vh
+		}
+
+		.page-title img {
+			position: relative;
+			top: -5px;
 		}
 
 		.content-layer {
-			padding: 10.3vh 30px 0;
+			padding: 10vh 30px 0;
 		}
 
 		.page-text {			
-			font-size: 14px;
-			line-height: 1.43;
+			font-size: 2vh;
+			line-height: 1.85;
+			text-align: center;
+			letter-spacing: 0.02em;
+			text-transform: uppercase;
 			color: #3F4440;
 			margin: 0 0 3.125vh;
-		}		
-
-		.slider {
-			position: relative;
-			left: -30px;
-			width: calc(100% + 60px);
-		}		
-
-		.slider__navigation {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;			
-			padding: 0 30px;
-			margin-top: 14px;
-		}
-		
-		.slider__controls {
-			display: flex;
-			align-items: center;
-			gap: 18px;
-			height: 37px;
-			position: relative;
-		}
-
-		.slider__control {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 37px;
-			height: 37px;
-			border-radius: 50%;
-			border: 1px solid #D3D7DA;
-			position: static;			
-			margin: 0;
-		}
-
-		.slider__control::after {
-			content: '';
-			width: 8px;
-			height: 14px;
-			background: no-repeat center;
-			background-size: contain;
-		}
-
-		.swiper-button-prev::after {
-			background-image: url('./assets/nav-arrow-left.svg');
-		}
-
-		.swiper-button-next::after {
-			background-image: url('./assets/nav-arrow-right.svg');
-		}
-
-		.swiper-pagination {
-			position: static;
-			display: flex;
-			align-items: flex-start;
-			width: fit-content;
-			color: #D3D7DA;
-			font-size: 32px;
-			line-height: 1;
-			font-family: 'Oranienbaum';
-		}
-
-		.swiper-pagination-current {
-			color: #4D9D34;
-		}
-
-		.swiper-pagination-total {
-			font-size: 20px;
-		}
+		}				
 
 		.cta-layer {			
 			padding: 0 30px 32px;
@@ -229,75 +197,6 @@
 			font-size: 16px;
 			background-color: #4D9D34;
 			cursor: pointer;
-		}
-
-		.swiper-slide {
-			height: 36.7vh;
-			width: 100%;
-			object-fit: cover;
-			object-position: bottom center;
-		}
-
-		.parks-list {
-			display: flex;
-			flex-direction: column;
-			gap: 6px;
-		}
-
-		.parks-list__item {
-			display: flex;
-			align-items: center;
-			gap: 7px;
-			font-weight: 700;
-			font-size: 13px;
-			line-height: 1.54;			
-			color: #3F4440;
-		}	
-		
-		.page-1-3-bg {
-			padding: 60px 0 0;
-		}
-
-		.page-1-3-content {
-			padding: 255px 30px 0;
-		}
-
-		.page-1-4-bg {
-			padding: 70px 30px 0;
-		}
-
-		.page-1-4-gradient {
-			padding: 329px 0 0;
-		}
-
-		.page-1-4-content {
-			padding: 450px 30px 0;
-		}
-
-		.marked-list {
-			display: flex;
-			flex-direction: column;
-			gap: 8px;
-			font-size: 14px;
-			line-height: 1.43;
-			color: #3F4440;
-			padding: 0;
-			margin: 0;
-		}
-
-		.marked-list li {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			list-style: none;			
-		}
-
-		.marked-list li::before {
-			content: '';
-			width: 3px;
-			height: 3px;
-			border-radius: 50%;
-			background-color: #3F4440;
 		}
 
 		.form {
@@ -359,42 +258,141 @@
 			color: #3F4440;
 		}
 
+		.title-layer {
+			padding: 15vh 20px 0;
+		}
+
+		.leaves-layer {
+			height: 100vh;		
+			padding: 0;
+		}
+
+		.leave {
+			animation-name: falling;
+			animation-duration: 12s;
+			animation-iteration-count: infinite;
+			animation-timing-function: linear;
+		}
+
+		.leave-img {
+			animation-name: rocking;
+			animation-duration: 4s;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+			animation-timing-function: ease-in-out;
+		}
+
+		.whatsapp-form {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.whatsapp-form__submit-btn {
+			margin: 7.5vh 0 2.34vh;
+		}
+
+		.whatsapp-form__row {
+			display: flex;
+			align-items: center;
+		}
+
+		.whatsapp-form__row-title {
+			width: 40%;
+			font-size: 14px;
+			line-height: 1.2;
+			letter-spacing: -0.02em;
+			color: #231F20;
+		}
+
+		.whatsapp-form__input-block {
+			display: flex;
+			align-items: center;
+			width: 60%;
+			height: 48px;
+			border-radius: 24px;
+			border: none;
+			background: #F8F8F8;
+			box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.03);
+		}
+
+		.whatsapp-form__input-block-item {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			height: 22px;
+			padding-left: 14px;
+		}
+
+		.whatsapp-form__input-block-item input {
+			border: none !important;
+			width: 100%;
+			height: 22px;
+			min-width: none;
+			outline: none !important;
+			appearance: none !important;
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: -0.02em;
+			color: #676968;
+			background: #F8F8F8;
+			position: relative;
+			bottom: -3px;
+			padding: 0 !important;
+		}
+
+		.whatsapp-form__input-block-item input:focus,
+		.whatsapp-form__input-block-item input:active {
+			border: none !important;
+			outline: none !important;
+			appearance: none !important;
+		}
+
+		.whatsapp-form__input-block-item:not(:last-child) {
+			border-right: 1px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.whatsapp-form__input-block-item span {
+			font-size: 14px;
+			line-height: 1;
+			letter-spacing: -0.02em;
+			color: #231F20;
+		}
+
+		.form-socials {
+			display: flex;
+			align-items: center;
+			gap: 9px;
+		}
+
+		.form-socials-text {
+			font-size: 15px;
+			line-height: 1.47;
+			color: #8E9FAC;
+		}
+
+		.block-title {
+			font-family: 'Oranienbaum';
+			font-weight: 400;
+			font-size: 28px;
+			color: rgba(63, 68, 64, 1);
+		}
+
 		@media (max-width: 375px) {
 			.cta-layer {			
 				padding-bottom: 20px;
-			}
+			}	
 
-			.swiper-slide {
-				height: 30vh;				
-			}
-
-			.parks-list__item img {
-				width: 32px;
-				height: auto;
-			}
-
-			.page-1-3-content {
-				padding: 235px 30px 0;
-			}
-
-			.page-1-4-content {
-				padding-top: 340px;
-			}
-
-			.page-1-4-gradient {
-				padding: 230px 0 0;
+			.content-layer {
+				padding: 10.3vh 30px 0;
 			}
 		}
 
 		@media (orientation: landscape) {
 			.page-text {			
 				font-size: 2vh;				
-			}
-
-			.marked-list {
-				font-size: 2vh;
-			}
-		}		
+			}	
+		}
 	</style>
 </head>
 
@@ -405,241 +403,146 @@
 		<?php require_once('sidebar-personal.php'); ?>
 
 		<!-- PAGE 1 -->
-		<amp-story-page id="page2-1">
-			<amp-story-grid-layer template="fill">
-				<amp-img src="./assets/page-2-1-bg.jpg"
-					width="320"
-					height="640"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" style="padding: 0;">
-				<amp-img src="./assets/rect-gradient.png"
-					layout="responsive"
-					width="320"
-					height="309"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="logo-layer">
-				<amp-img src="./assets/very-logo.svg"
-					width="89"
-					height="23"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer">
-				<a role="button" onclick="window.location='./own-garden.php#page=page2-2'" class="btn" grid-area="lower-third" style="margin-top: auto;">
-					Пространство для детей 
-					<amp-img src="./assets/arrow-right.svg"
-						width="24"
-						height="18"						
-						alt="">
-					</amp-img>
-				</a>
-			</amp-story-grid-layer>
+		<amp-story-page id="page-int-1">				
 			<amp-story-grid-layer template="vertical" class="content-layer">
-				<div>
-					<h1 class="page-title" style="margin-bottom: 16px;">
-						Активный отдых
+				<div style="display: flex; flex-direction: column; align-items: center;">
+					<h1 class="page-title">
+						<img
+							src="./assets/very-logo.svg"
+							width="143"
+							height="37"
+							alt=""
+						>
+						— это:
 					</h1>
 					<p class="page-text">
-						Зарядитесь позитивом энергичных игр, полётов на&nbsp;крылатых качелях под парящим мостом и&nbsp;детским смехом, который сливается с&nbsp;шумом фонтана.
-					</p>					
+						Открыть дверь и&nbsp;попасть в&nbsp;парк.<br>
+						Услышать шум леса, а&nbsp;не&nbsp;машин.
+					</p>	
+					<amp-img src="./assets/int-1-img.jpg" style="margin-bottom: 1.875vh;"
+						width="277"
+						height="331"						
+						alt="">
+					</amp-img>	
+					<p class="page-text">
+						Оказаться на&nbsp;природе в&nbsp;Мегаполисе.
+					</p>				
 				</div>				
 			</amp-story-grid-layer>
-		</amp-story-page>
+			<amp-story-grid-layer template="vertical" class="leaves-layer">
+				<div class="position: relative;">
+					<div class="leave" style="margin-top: 34vh;">
+						<img class="leave-img" src="./assets/leaves/leave-1.png"
+							width="89"
+							height="75"						
+							alt="">					
+					</div>
+					<div style="position: absolute; top: 62vh; right: 10px;">
+						<img class="leave-img" src="./assets/leaves/leave-2.png" style="animation-duration: 8s;"
+							width="81"
+							height="88"						
+							alt="">					
+					</div>
+				</div>				
+			</amp-story-grid-layer>
+		</amp-story-page>	
 		
 		<!-- PAGE 2 -->
-		<amp-story-page id="page2-2">
-			<amp-story-grid-layer template="fill">
-				<amp-img src="./assets/page-2-2-bg.jpg"
-					width="320"
-					height="640"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" style="padding: 0;">
-				<amp-img src="./assets/rect-gradient.png"
-					layout="responsive"
-					width="320"
-					height="309"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="logo-layer">
-				<amp-img src="./assets/very-logo.svg"
-					width="89"
-					height="23"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer">
-				<a role="button" onclick="window.location='./own-garden.php#page=page2-3'" class="btn" grid-area="lower-third" style="margin-top: auto;">
-					Спорт на территории
-					<amp-img src="./assets/arrow-right.svg"
-						width="24"
-						height="18"						
-						alt="">
-					</amp-img>
-				</a>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="content-layer">
-				<div>
-					<h1 class="page-title" style="margin-bottom: 16px;">
-						Пространство<br>для детей 
+		<amp-story-page id="page-int-2">				
+			<amp-story-grid-layer template="vertical" class="content-layer" style="padding-left: 0; padding-right: 0;">
+				<div style="display: flex; flex-direction: column; align-items: center;">
+					<h1 class="page-title">
+						<img
+							src="./assets/very-logo.svg"
+							width="143"
+							height="37"
+							alt=""
+						>
+						— это:
 					</h1>
-					<p class="page-text">
-						На территории эко-квартала предусмотрены 5 ультрасовременных площадок с&nbsp;навесами, альпинарием, интерактивными играми на&nbsp;свежем воздухе для детей разных возрастов, занимающих 2500 кв.м.
-					</p>					
+					<p class="page-text" style="margin-bottom: 6.25vh;">
+						Ощущать, как весна сменяет зиму,<br>
+						слышать, как дышит земля после дождя…
+					</p>	
+					<img src="./assets/int-2-img.jpg" style="width: 100%;" animate-in="fade-in" animate-in-duration="2s"
+						width="360"
+						height="234"						
+						alt="">					
+					<p class="page-text" style="margin-top: 4vh;">
+						Единственный в&nbsp;Москве<br>
+						эко-квартал в&nbsp;окружении 600&nbsp;га<br>
+						зеленых прогулочных зон
+					</p>				
+				</div>				
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="vertical" class="leaves-layer">
+				<div class="position: relative;">
+					<div style="margin-top: 61vh; margin-left: 5.6vw;">
+						<img class="leave-img" src="./assets/leaves/leave-3.png"
+							width="64"
+							height="73"						
+							alt="">					
+					</div>
+					<div style="position: absolute; top: 28vh; right: -10px;">
+						<img class="leave-img" src="./assets/leaves/leave-4.png" style="animation-duration: 8s; animation-delay: .5s;"
+							width="125"
+							height="120"						
+							alt="">					
+					</div>
 				</div>				
 			</amp-story-grid-layer>
 		</amp-story-page>	
 
 		<!-- PAGE 3 -->
-		<amp-story-page id="page2-3">
-			<amp-story-grid-layer template="fill">
-				<amp-img src="./assets/page-2-3-bg.jpg"
-					width="320"
-					height="640"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" style="padding: 0;">
-				<amp-img src="./assets/rect-gradient.png"
-					layout="responsive"
-					width="320"
-					height="309"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="logo-layer">
-				<amp-img src="./assets/very-logo.svg"
-					width="89"
-					height="23"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
+		<amp-story-page id="page-int-3">			
 			<amp-story-grid-layer template="thirds" class="cta-layer">
-				<a role="button" onclick="window.location='./own-garden.php#page=page2-4'" class="btn" grid-area="lower-third" style="margin-top: auto;">
-					Двор без машин
-					<amp-img src="./assets/arrow-right.svg"
-						width="24"
-						height="18"						
-						alt="">
-					</amp-img>
+				<a role="button" class="btn sidebar-control" grid-area="lower-third" style="margin-top: auto;">
+					Получить индивидуальную подборку					
 				</a>
 			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="content-layer">
-				<div>
-					<h1 class="page-title" style="margin-bottom: 16px;">
-						Активный спорт
+			<amp-story-grid-layer template="vertical" class="content-layer" style="padding-left: 0; padding-right: 0;">
+				<div style="display: flex; flex-direction: column; align-items: center;">
+					<h1 class="page-title">
+						<img
+							src="./assets/very-logo.svg"
+							width="143"
+							height="37"
+							alt=""
+						>
+						— это:
 					</h1>
-					<p class="page-text">
-						Все возможности для спорта&nbsp;— на&nbsp;одной территории:
-					</p>			
-					<ul class="marked-list">
-						<li>SPA-комплекс с&nbsp;фитнес-залом и&nbsp;бассейном</li>
-						<li>волейбольная площадка</li>
-						<li>зона workout</li>
-						<li>универсальная спортивная площадка</li>
-						<li>крытая площадка для мини-футбола</li>
-					</ul>																
-				</div>				
-			</amp-story-grid-layer>
-		</amp-story-page>	
-
-		<!-- PAGE 4 -->
-		<amp-story-page id="page2-4">
-			<amp-story-grid-layer template="fill">
-				<amp-img src="./assets/page-2-4-bg.jpg"
-					width="320"
-					height="640"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" style="padding: 0;">
-				<amp-img src="./assets/rect-gradient.png"
-					layout="responsive"
-					width="320"
-					height="309"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="logo-layer">
-				<amp-img src="./assets/very-logo.svg"
-					width="89"
-					height="23"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer">
-				<a role="button" onclick="window.location='./own-garden.php#page=page2-5'" class="btn" grid-area="lower-third" style="margin-top: auto;">
-					Прогулки
-					<amp-img src="./assets/arrow-right.svg"
-						width="24"
-						height="18"						
-						alt="">
-					</amp-img>
-				</a>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="content-layer">
-				<div>
-					<h1 class="page-title" style="margin-bottom: 16px;">
-						Двор без машин
-					</h1>
-					<p class="page-text">
-						Спокойно отпускайте детей гулять. На каждой площадке они будут в&nbsp;полной безопасности.
+					<p class="page-text" style="margin-bottom: 6.25vh;">
+						Замедлиться,<br>
+						чтобы почувствовать течение жизни
 					</p>	
-					<p class="page-text">
-						Вся территория двора оборудована системами контроля доступа и&nbsp;видеонаблюдением.
-					</p>					
+					<img src="./assets/int-3-img.jpg" style="width: 100%;" animate-in="fade-in" animate-in-duration="2s"
+						width="360"
+						height="234"						
+						alt="">					
+					<p class="page-text" style="margin-top: 4vh;">
+						Наслаждаться живописными видами<br>
+						из окна своей квартиры
+					</p>				
+				</div>				
+			</amp-story-grid-layer>
+			<amp-story-grid-layer template="vertical" class="leaves-layer">
+				<div class="position: relative;">
+					<div style="margin-top: 28vh; margin-left: -10px;">
+						<img class="leave-img" src="./assets/leaves/leave-5.png" style="animation-duration: 7s"
+							width="109"
+							height="120"						
+							alt="">					
+					</div>
+					<div style="position: absolute; top: 63vh; right: 20px;">
+						<img class="leave-img" src="./assets/leaves/leave-6.png" style="animation-duration: 8s; animation-delay: 1.5s;"
+							width="80"
+							height="75"						
+							alt="">					
+					</div>
 				</div>				
 			</amp-story-grid-layer>
 		</amp-story-page>	
-
-		<!-- PAGE 5 -->
-		<amp-story-page id="page2-5">
-			<amp-story-grid-layer template="fill">
-				<amp-img src="./assets/page-2-5-bg.jpg"
-					width="320"
-					height="640"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" style="padding: 0;">
-				<amp-img src="./assets/rect-gradient.png"
-					layout="responsive"
-					width="320"
-					height="309"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="logo-layer">
-				<amp-img src="./assets/very-logo.svg"
-					width="89"
-					height="23"					
-					alt="">
-				</amp-img>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="thirds" class="cta-layer">
-				<a role="button" class="btn sidebar-control callback-form" grid-area="lower-third" style="margin-top: auto;">
-					Записаться на показ					
-				</a>
-			</amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="content-layer">
-				<div>
-					<h1 class="page-title" style="margin-bottom: 16px;">
-						С красотой<br>
-						и вкусом
-					</h1>
-					<p class="page-text">
-						Совершите променад по&nbsp;парящему мосту, насладитесь видами со&nbsp;смотровых площадок или отведайте чашечку кофе с&nbsp;круассаном из&nbsp;местной пекарни.
-					</p>					
-				</div>				
-			</amp-story-grid-layer>
-		</amp-story-page>	
-	</amp-story>	
+	</amp-story>
 
 	<style>
     #sidebar,
@@ -883,6 +786,38 @@
       });
     }
   </script>
+
+	<script>
+		const controlButtons = document.querySelectorAll('.slider__control');
+		let timer = setInterval(nextSlide, 3000);
+
+		const swiper = new Swiper('.slider', {			
+			slidesPerView: 1,
+			spaceBetween: 10,
+			loop: true,
+			navigation: {
+				nextEl: ".swiper-button-next",
+				prevEl: ".swiper-button-prev",
+			},
+			pagination: {
+				el: '.swiper-pagination',
+				type: 'fraction',
+			}
+		});
+
+		function nextSlide() {
+			swiper.slideNext();
+		}		
+
+		controlButtons.forEach(el => {
+			el.addEventListener('click', () => {
+				clearInterval(timer);
+				setTimeout(() => {
+					timer = setInterval(nextSlide, 3000);
+				}, 0)		
+			})
+		})
+	</script>
 
 <script type="text/javascript">
 		var __cs = __cs || [];
