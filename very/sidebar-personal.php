@@ -25,11 +25,11 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>от</span>
-							<input type="text" placeholder="1" id="bedrooms_from">
+							<input type="text" placeholder="1" id="bedrooms_from" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
 						</div>
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input type="text" placeholder="5" id="bedrooms_to">
+							<input type="text" placeholder="5" id="bedrooms_to" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input type="text" placeholder="70 078 296 ₽" id="cost">
+							<input type="text" placeholder="70 078 296 ₽" id="cost" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
 						</div>
 					</div>
 				</div>
@@ -47,11 +47,11 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>от</span>
-							<input type="text" placeholder="30" id="square_from">
+							<input type="text" placeholder="30" id="square_from" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
 						</div>
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input type="text" placeholder="180" id="square_to">
+							<input type="text" placeholder="180" id="square_to" onkeyup="this.value = this.value.replace(/[^\d]/g,'');">
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 					<span class="whatsapp-form__row-title">Телефон</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
-							<input class="tel" type="tel" id="tel_pers">
+							<input class="tel" type="tel" id="tel_pers" minlength="18" required>
 						</div>
 					</div>
 				</div>

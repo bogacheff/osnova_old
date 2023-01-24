@@ -28,11 +28,11 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>от</span>
-							<input id="bedrooms_from" type="text" placeholder="1">
+							<input id="bedrooms_from" type="text" placeholder="1" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" required>
 						</div>
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input id="bedrooms_to" type="text" placeholder="5">
+							<input id="bedrooms_to num" type="text" placeholder="5" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" required>
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input id="cost" type="text" placeholder="70 078 296 ₽">
+							<input id="cost num" type="text" placeholder="70 078 296 ₽" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" required>
 						</div>
 					</div>
 				</div>
@@ -50,11 +50,11 @@
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
 							<span>от</span>
-							<input id="square_from" type="text" placeholder="30">
+							<input id="square_from num" type="num" placeholder="30" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" required>
 						</div>
 						<div class="whatsapp-form__input-block-item">
 							<span>до</span>
-							<input id="square_to" type="text" placeholder="180">
+							<input id="square_to num" type="num" placeholder="180" onkeyup="this.value = this.value.replace(/[^\d]/g,'');" required>
 						</div>
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 					<span id="tel_label_" class="whatsapp-form__row-title">Телефон</span>
 					<div class="whatsapp-form__input-block">
 						<div class="whatsapp-form__input-block-item">
-							<input id="tel_pers" class="tel" type="tel" required />
+							<input id="tel_pers" class="tel" type="tel" minlength="18" required />
 						</div>
 					</div>
 				</div>
